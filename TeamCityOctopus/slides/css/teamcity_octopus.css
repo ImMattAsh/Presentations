@@ -1,0 +1,29 @@
+.logo {
+	max-width: 15% !important;
+	max-height: 15% !important;
+	top: 0;
+	left: 0;
+}
+
+#tc-logo {
+	position: absolute;
+}
+
+#octopus-logo {
+	float: right;
+	text-align: right;
+	position: relative;
+}
+
+.tc-only #octopus-logo {
+	display: none;
+}
+
+.octopus-only #tc-logo {
+	display: none;
+}
+
+.helper {
+	color: #FFA500;
+	font-weight: bold;
+}
