@@ -77,7 +77,7 @@
 					<p>
 						A highlight of features from both products that I believe are essential
 						<div>
-							<img src="img/lebowski/Yeahwellthatsjustlikeyouropinionman.jpg" width="60%"/>
+							<img src="img/lebowski/Yeahwellthatsjustlikeyouropinionman.jpg" width="45%"/>
 						</div>
 					</p>
 				</section>
@@ -122,7 +122,11 @@
 					</section>
 				</section>
 				<section>
-					<h3>Note: if you see something in <span class="helper" title="remind me what this is">this</span> color, hover for a reminder of what this is.</h3>
+					<h3>Presentation Notes</h3>
+					<ul>
+						<li>Text in <span class="helper" title="remind me what this is">this color</span> means you can hover over it for a reminder of what "this" is (and you don't even need to call .bind() on it)</li>
+						<li>Logos - slides with both logos pertain to both, slides with 1 logo pertain to just that product</li>
+					</ul>
 				</section>
 				<section>
 					<p>
@@ -130,9 +134,10 @@
 					</p>
 					<h2>Ok, Let's do this!</h2>
 				</section>
-				<!-- 1st TeamCity section -->
+				<!-- Start TeamCity section -->
 				<section data-state="tc-only">
 					<section>
+						<h1>TeamCity</h1>
 						<h2>Basic Concepts</h2>
 					</section>
 					<section>
@@ -187,6 +192,7 @@
 				</section>
 				<section data-state="tc-only">
 					<section>
+						<h1>TeamCity</h1>
 						<h2>"Advanced" Concepts</h2>
 						<p>
 						<img src="img/lebowski/donnie.jpg">
@@ -196,12 +202,85 @@
 						<h2>"Advanced" Concepts</h2>
 						<h3>Triggers</h3>
 						<ul>
-							<li>Mechanisms for <strong>starting</strong> the execution of a <span class="helper" title="collection of build steps, belongs to a project">build configuration</span></li>
-
+							<li>Mechanisms for automating the <strong>start</strong> the execution of a <span class="helper" title="collection of build steps, belongs to a project">build configuration</span>
+								<ul>
+									<li>VCS</li>
+									<li>Finish Build</li>
+									<li>Schedule</li>
+									<li>and many others...</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>"Advanced" Concepts</h2>
+						<h3>Variables</h3>
+						<ul>
+							<li>Can scope to system, project, or build configuration</li>
+						</ul>
+					</section>
+					<section>
+						<h2>"Advanced" Concepts</h2>
+						<h3>Dependencies</h3>
+						<ul>
+							<li>Snapshot</li>
+							<ul>
+								<li>Ensures contiuity of resources between build configurations</li>
+							</ul>
+							<li>Artifact</li>
+							<ul>
+								<li>Requires artifacts are generated before proceeding</li>
+							</ul>
+						</ul>
+					</section>
+					<section>
+						<h2>"Advanced" Concepts</h2>
+						<h3>Artifacts</h3>
+						<p>This is what a build configuration produces. For this demo, NuGet packages that are hosted on the TeamCity NuGet repository</p>
+					</section>
+					<section>
+						<h2>"Advanced" Concepts</h2>
+						<h3>Build Features</h3>
+						<ul>
+							<li>VCS Labeling</li>
+							<li>Symbol File Indexer - Greg taught us some cool stuff with symbol files a number of months ago that would be helpful here</li>
+							<li>and many more...</li>
+						</ul>
+					</section>
+					<section>
+						<h2>"Advanced" Concepts</h2>
+						<h3>Plugins</h3>
+						<ul>
+							<li>Outside of projects, build configurations or build steps</li>
+							<li>Octopack (we'll come back to this)</li>
+							<li>Refer to TeamCity Wiki</li>
 						</ul>
 					</section>
 				</section>
 				<!-- End TeamCity section -->
+				<section>
+					<h2>Okay, time to roll our way into the semi's</h2>
+				</section>
+				<!-- Start Octopus section -->
+				<section data-state="octopus-only">
+					<section>
+						<h1>Octopus Deploy</h1>
+						<h2>Basic Concepts</h2>
+					</section>
+					<section>
+						<h2>Basic Concepts</h2>
+						<h3>Octopus Server vs. Tentacles</h3>
+						<p>
+							<img src="img/octopus/octopus_server_and_tentacles.png" style="max-width: 70%;">
+						</p>
+					</section>
+					<section>
+						<h2>Basic Concepts</h2>
+						<p>
+							<img src="img/octopus/octopus_objects.png" style="max-width: 85%;">
+						</p>
+					</section>
+				</section>
 				<section>
 					<h2>Slides</h2>
 					<p>
