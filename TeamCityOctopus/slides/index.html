@@ -47,12 +47,6 @@
 						<small>Matt Ash | <a href="http://twitter.com/ashmatthew">@ashmatthew</a> | The Beard</small>
 					</p>
 				</section>
-
-				<section>
-					<h3>Without the fine work of these folks, none of this would be possible</h3>
-					<p class="fragment"><a href="https://www.jetbrains.com/teamcity/" title="https://www.jetbrains.com/teamcity/">TeamCity</a> by JetBrains</p>
-					<p class="fragment"><a href="https://octopusdeploy.com/">Octopus Deploy</a> by <span class="fragment">Octopus Deploy</span></p>
-				</section>
 				<section>
 					<h2>Me</h2>
 					<ul>
@@ -280,6 +274,145 @@
 							<img src="img/octopus/octopus_objects.png" style="max-width: 85%;">
 						</p>
 					</section>
+					<section>
+						<h2>Basic Concepts</h2>
+						<h3><strong>Projects</strong></h3>
+						<ul>
+							<li>Defines a process for deployment</li>
+							<li>Contains variables</li>
+							<li>Has many releases</li>
+							<li>Is associated with a <span class="helper" title="rules for moving a release through environments">life cycle</span></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Basic Concepts</h2>
+						<h3>Project > <strong>Releases</strong></h3>
+						<ul>
+							<li>Contains a deployable package</li>
+							<li>Can have release notes (automate via a <span class="helper" title="can add functionality to a build configuration in TeamCity">build feature</span>)
+							<li>Has a version number</li>
+							<li>Can be deployed/promoted to various environments</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Basic Concepts</h2>
+						<h3>Project > <strong>Variables</strong></h3>
+						<ul>
+							<li>*.config AppSettings</li>
+							<li>*.config ConnectionStrings</li>
+							<li>Powershell Scripts</li>
+							<li>Scoping
+								<ul>
+									<li><span class="helper" title="i.e. Dev, Test, Prod. Contains many machines">Environments</span></li>
+									<li><span class="helper" title="Specific servers to which you're deploying. Belongs to environment(s)">Machines</span></li>
+									<li><span class="helper" title="External web app server or intranet server, or database server. Applies to many machines and Enviroments">Roles</span></li>
+									<li><span class="helper" title="we actually haven't talked about this yet, so hold on">Deployment Steps</span></li>
+									<li>The most specific scope will be used</li>
+								</ul>
+							</li>
+							<li>Library Sets (we'll get to it)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Basic Concepts</h2>
+						<h3>Project > <strong>Deployment Process Steps</strong></h3>
+						<ul>
+							<li>Deploy a NuGet package</li>
+							<li>Run a Powershell script</li>
+							<li>Send an email</li>
+							<li>Manual Intervention</li>
+							<li>Deploy to Windows Azure</li>
+							<li>and many more...</li>
+							<li>Scoping (similar to variables)</li>
+							<li>Check out the octopus library for custom templates: <a href="https://library.octopusdeploy.com/#!/listing">https://library.octopusdeploy.com/#!/listing</a></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Basic Concepts</h2>
+						<h3>Octopack and TeamCity Plugins</strong></h3>
+						<ul>
+							<li>Octopack
+								<ul>
+									<li>Generates an Octopus-style NuGet package</li>
+									<li>Add to any VS project that is to be deployed</li>
+									<li>Can be found on nuget.org</li>
+								</ul>
+							</li>
+							<li>TeamCity Plugin
+								<ul>
+									<li>Adds 3 runners to your <span class="helper" title="a specific step in a build configuration such as MSBuild or MSTest or Restore NuGet packages">Build Step</span> options: Create/Deploy/Promote releases</li>
+									<li>Fires off tasks via the Octopus API</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+				<section data-state="octopus-only">
+					<section>
+						<h1>Octopus</h1>
+						<h2>"Advanced" Concepts</h2>
+						<p>
+							<img src="img/lebowski/farout.jpg">
+						</p>
+					</section>
+					<section>
+						<h2>"Advanced" Concepts</h2>
+						<h3>Library Sets</h3>
+						<ul>
+							<li><span class="helper" title="typically belong to a project and replace appSettings and connectionStrings">Variables</span> outside of Projects</li>
+							<li>Can be included on many projects</li>
+							<li>Get applied the same as project variables</li>
+						</ul>
+					</section>
+					<section>
+						<h2>"Advanced" Concepts</h2>
+						<h3>Step Templates</h3>
+						<ul>
+							<li>A template for a reusable and custom <span class="helper" title="defines what is done when deploying to an environment">Deployment Process Step</span></li>
+							<li>Can be included on many projects</li>
+						</ul>
+					</section>
+					<section>
+						<h2>"Advanced" Concepts</h2>
+						<h3>External Feeds</h3>
+						<ul>
+							<li><em>NOTE:</em> Octopus has its own internal feed, however, it's <strong>not</strong> externally accessible</li>
+							<li>Add any nuget repositories you want. In our case, I've already added our TeamCity NuGet feed which <em>is</em> externally accessible</li>
+						</ul>
+					</section>
+					<section>
+						<h2>"Advanced" Concepts</h2>
+						<h3>Script Modules</h3>
+						<ul>
+							<li>Collections of PowerShell functions and cmdlets that can be included in multiple projects</li>
+						</ul>
+					</section>
+				</section>
+				<!-- end Octopus section -->
+				<section>
+					<h1>Demo time</h1>
+					<h3>Shabbos or not,<br/>we're gonna roll</h3>
+					<p>
+						<iframe src="//giphy.com/embed/vWEY797S7rYkw" width="480" height="258" frameBorder="0" style="max-width: 100%" class="giphy-embed" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+					</p>
+				</section>
+				<!-- Start demo section -->
+				<section>
+					<section>
+						<h2></h2>
+					</section>
+				</section>
+				<!-- End demo section -->
+				<!-- Wrap up -->
+				<section>
+					<h3>Without the fine work of these folks, none of this would be possible</h3>
+					<p class="fragment"><a href="https://www.jetbrains.com/teamcity/" title="https://www.jetbrains.com/teamcity/">TeamCity</a> by JetBrains</p>
+					<p class="fragment"><a href="https://octopusdeploy.com/">Octopus Deploy</a> by <span class="fragment">Octopus Deploy</span></p>
+					<p class="fragment"><a href="http://lab.hakim.se/reveal-js/#/" title="http://lab.hakim.se/reveal-js/#/">Reveal JS</a> by @hakimel</p>
+				</section>
+				<section>
+					<h2>Ok, the ringer's been delivered...</h2>
+					<h2 class="fragment">Let's go bowling...</h2>
 				</section>
 			</div>
 		</div>
