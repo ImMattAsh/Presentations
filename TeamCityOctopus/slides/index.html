@@ -94,7 +94,7 @@
 				</section>
 				<section>
 					<section>
-						<h2>Expected Results</h2>
+						<h2>When we're done we'll have...</h2>
 					</section>
 					<section data-state="tc-only">
 						<h2>A TeamCity Project that</h2>
@@ -169,9 +169,7 @@
 						<h2>Basic Concepts</h2>
 						<h4>... > Build Configurations > <strong>Build Steps</strong></h4>
 						<ul>
-							<li>Task for a build agent to execute</li>
-							<li>Contains build steps</li>
-							<li>Can have dependencies or be another confiugrations dependent configuration</li>
+							<li>Specific task for a build agent to execute (compile, test, etc)</li>
 						</ul>
 					</section>
 					<section>
@@ -219,7 +217,7 @@
 						<ul>
 							<li>Snapshot</li>
 							<ul>
-								<li>Ensures contiuity of resources between build configurations</li>
+								<li>Ensures continuity of resources between build configurations within a single build chain</li>
 							</ul>
 							<li>Artifact</li>
 							<ul>
@@ -230,7 +228,10 @@
 					<section>
 						<h2>"Advanced" Concepts</h2>
 						<h3>Artifacts</h3>
-						<p>This is what a build configuration produces. For this demo, NuGet packages that are hosted on the TeamCity NuGet repository</p>
+						<ul>
+							<li>This is what a build configuration produces</li>
+							<li>For this demo, we'll build NuGet packages that we host within the TeamCity NuGet repository</li>
+						</ul>
 					</section>
 					<section>
 						<h2>"Advanced" Concepts</h2>
@@ -397,18 +398,122 @@
 					</p>
 				</section>
 				<!-- Start demo section -->
-				<section>
+				<section data-state="tc-only">
 					<section>
-						<h2></h2>
+						<h2>What makes a good build?</h2>
+						<ul>
+							<li class="fragment">We need to handle our package dependencies</li>
+							<li class="fragment">We need to build the solution</li>
+							<li class="fragment">We need to run automated tests</li>
+							<li class="fragment">We need to generate some artifacts</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Handle Dependencies
+									<ul>
+										<li>Package Sources</li>
+										<li>Update mode - packages.config vs .sln</li>
+									</ul>
+								</li>
+								<li>Building the solution
+									<ul>
+										<li>Fail a test</li>
+										<li>email notification</li>
+										<li>Fix test</li>
+										<li>Show with basic failure condition</li>
+										<li>Show with "only if build status successful"</li>
+									</ul>
+								</li>
+								<li>Running Tests
+									<ul>
+										<li>Fail a test</li>
+										<li>email notification</li>
+										<li>Fix test</li>
+										<li>Show with basic failure condition</li>
+										<li>Show with "only if build status successful"</li>
+									</ul>
+								</li>
+								<li>Artifacts
+									<ul>
+										<li>Code - installing octopack on projects</li>
+										<li>Show solution view of nuget packages</li>
+										<li>Octopack is really an extension to MSBuild</li>
+										<li>Artifacts dropdown next to build</li>
+									</ul>
+								</li>
+								
+							</ul>
+						</aside>
 					</section>
+				</section>
+				<section data-state="octopus-only">
+					<section>
+						<h2>What makes a good release?</h2>
+						<ul>
+							<li class="fragment">We need a NuGet package</li>
+							<li class="fragment">We need to deploy the package</li>
+							<li class="fragment">We need to promote the package</li>
+							<li class="fragment">We need to generate some artifacts</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>NuGetPackage
+									<ul>
+										<li>Where to add external feed</li>
+										<li>selecting a version</li>
+										<li>setting the release # from package #</li>
+									</ul>
+								</li>
+								<li>Deploying
+									<ul>
+										<li>variables</li>
+										<li>life cycle</li>
+										<li>AFTER deploying</li>
+										<li>logs</li>
+										<li>resulting web.config</li>
+									</ul>
+								</li>
+								<li>Running Tests
+									<ul>
+										<li>Fail a test</li>
+										<li>email notification</li>
+										<li>Fix test</li>
+										<li>Show with basic failure condition</li>
+										<li>Show with "only if build status successful"</li>
+									</ul>
+								</li>
+								<li>Artifacts
+									<ul>
+										<li>Code - installing octopack on projects</li>
+										<li>Show solution view of nuget packages</li>
+										<li>Octopack is really an extension to MSBuild</li>
+										<li>Artifacts dropdown next to build</li>
+									</ul>
+								</li>
+								
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>Let's tie these two systems together</h2>
+					<p>
+						<img src="img/lebowski/tied_room_together.gif">
+					</p>
 				</section>
 				<!-- End demo section -->
 				<!-- Wrap up -->
 				<section>
-					<h3>Without the fine work of these folks, none of this would be possible</h3>
-					<p class="fragment"><a href="https://www.jetbrains.com/teamcity/" title="https://www.jetbrains.com/teamcity/">TeamCity</a> by JetBrains</p>
-					<p class="fragment"><a href="https://octopusdeploy.com/">Octopus Deploy</a> by <span class="fragment">Octopus Deploy</span></p>
-					<p class="fragment"><a href="http://lab.hakim.se/reveal-js/#/" title="http://lab.hakim.se/reveal-js/#/">Reveal JS</a> by @hakimel</p>
+					<h2>Credit to</h2>
+					<p><a href="https://www.jetbrains.com/teamcity/" title="https://www.jetbrains.com/teamcity/">TeamCity</a> by JetBrains</p>
+					<p><a href="https://octopusdeploy.com/">Octopus Deploy</a> by Octopus Deploy</p>
+					<p><a href="http://lab.hakim.se/reveal-js/#/" title="http://lab.hakim.se/reveal-js/#/">Reveal JS</a> by @hakimel</p>
+				</section>
+				<section>
+					<h2>Slides and Source</h2>
+					<p style="overflow-wrap: break-word;">
+						<a href="https://github.com/ashmatthew/Presentations/tree/master/TeamCityOctopus">https://github.com/ashmatthew/Presentations/tree/master/TeamCityOctopus</a>
+					</p>
 				</section>
 				<section>
 					<h2>Ok, the ringer's been delivered...</h2>
