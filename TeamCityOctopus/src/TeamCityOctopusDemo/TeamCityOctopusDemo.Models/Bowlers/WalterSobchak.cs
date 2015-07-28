@@ -15,11 +15,11 @@ namespace TeamCityOctopusDemo.Models.Bowlers
 
 		public bool ShouldIRoll( DateTime date )
 		{
-			return !IsShabbos( date );
+			//return !IsShabbos( date );
 
-			//if ( IsShabbos( date ) )
-			//	throw new ShomerShabbosException();
-			//return true;
+			if ( IsShabbos( date ) )
+				throw new ShomerShabbosException();
+			return true;
 		}
 
 		#endregion
