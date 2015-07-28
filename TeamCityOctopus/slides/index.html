@@ -44,7 +44,7 @@
 					<h2>Octopus Deploy</h2>
 					<h4>Automated Builds and Deployment</h4>
 					<p>
-						<small>Matt Ash | <a href="http://twitter.com/ashmatthew">@ashmatthew</a> | The Beard</small>
+						<small>Matt Ash | <a href="http://twitter.com/ashmatthew">@ashmatthew</a></small>
 					</p>
 				</section>
 				<section>
@@ -78,12 +78,12 @@
 				<section>
 					<h2>What else this is!</h2>
 					<p>
-						A little knowledge, and a little confidence
+						Enough info to walk away and setup your own continously integrated application
 					</p>
-					<p class="fragment"><small>...and maybe a little Big Lebowski humor because come on...seriously, Big Lebowski</small></p>
+					<p class="fragment"><small>...and maybe a little Big Lebowski humor</small></p>
 				</section>
 				<section>
-					<h2>Hopefully you're at least a little familiar with...</h2>
+					<h2>Hopefully you're familiar with...</h2>
 					<ol>
 						<li class="fragment"><a href="https://www.nuget.org">NuGet</a></li>
 						<li class="fragment">Standard Structure of WebApps as served by IIS</li>
@@ -94,7 +94,8 @@
 				</section>
 				<section>
 					<section>
-						<h2>When we're done we'll have...</h2>
+						<h2>When we're done</h2>
+						<h2>we'll have built a...</h2>
 					</section>
 					<section data-state="tc-only">
 						<h2>A TeamCity Project that</h2>
@@ -152,17 +153,16 @@
 						<h3><strong>Projects</strong></h3>
 						<ul>
 							<li>Typically tied to a solution (.sln)</li>
-							<li>Contains child projects -- and/or -- build configurations</li>
-							<li>They are what appears on your home screen</li>
+							<li>Contains build configurations -- and/or -- child projects</li>
 						</ul>
 					</section>
 					<section>
 						<h2>Basic Concepts</h2>
 						<h3>Project > <strong>Build Configurations</strong></h3>
 						<ul>
-							<li>High level container for your build process</li>
+							<li>High level container that describes basic build process</li>
 							<li>Contains build steps</li>
-							<li>Can have dependencies or be another configuration's dependent configuration (we'll get to dependencies)</li>
+							<li>Can have dependent configurations or be another configuration's dependent configuration (we'll get to dependencies)</li>
 						</ul>
 					</section>
 					<section>
@@ -218,10 +218,12 @@
 							<li>Snapshot</li>
 							<ul>
 								<li>Ensures continuity of resources between build configurations within a single build chain</li>
+								<li>Looks for a <a href="https://confluence.jetbrains.com/display/TCD8/Snapshot+Dependencies">"suitable" build</a></li>
 							</ul>
 							<li>Artifact</li>
 							<ul>
 								<li>Requires artifacts are generated before proceeding</li>
+								<li>Can be used along side snapshot dependencies</li>
 							</ul>
 						</ul>
 					</section>

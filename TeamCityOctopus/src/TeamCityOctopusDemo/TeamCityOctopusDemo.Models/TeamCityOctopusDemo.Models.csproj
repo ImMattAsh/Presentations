@@ -42,6 +42,8 @@
     <Compile Include="Bowlers\IBowler.cs" />
     <Compile Include="Bowlers\TheDude.cs" />
     <Compile Include="Bowlers\WalterSobchak.cs" />
+    <Compile Include="DaysOfRest\Shabbos.cs" />
+    <Compile Include="Exceptions\ShomerShabbosException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
