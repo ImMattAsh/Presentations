@@ -53,7 +53,7 @@
 						<li>Matt Ash</li>
 						<li>I hate shaving</li>
 						<li>I like writing code</li>
-						<li>I really like automating its build and deployment process</li>
+						<li>I like automating build and deployment processes</li>
 						<li>@ashmatthew</li>
 					</ul>
 				</section>
@@ -93,6 +93,16 @@
 					</ol>
 				</section>
 				<section>
+					<h2>Plan of Attack</h2>
+					<li class="fragment">TeamCity Basic Concepts</li>
+					<li class="fragment">TeamCity "Advanced" Concepts</li>
+					<li class="fragment">Octopus Deploy Basic Concepts</li>
+					<li class="fragment">Octopus Deploy "Advanced" Concepts</li>
+					<li class="fragment">Demo - TeamCity setup</li>
+					<li class="fragment">Demo - Octopus Deploy setup</li>
+					<li class="fragment">Demo - tying the room together</li>
+				</section>
+				<section>
 					<section>
 						<h2>When we're done</h2>
 						<h2>we'll have built a...</h2>
@@ -120,7 +130,7 @@
 					<h3>Presentation Notes</h3>
 					<ul>
 						<li>Text in <span class="helper" title="remind me what this is">this color</span> means you can hover over it for a reminder of what "this" is (and you don't even need to call .bind() on it)</li>
-						<li>Logos - slides with both logos pertain to both, slides with 1 logo pertain to just that product</li>
+						<li>Logos - slides with both logos pertain to both products, slides with 1 logo pertain to just that product</li>
 					</ul>
 				</section>
 				<section>
@@ -178,7 +188,7 @@
 						<ul>
 							<li>Version Control System</li>
 							<li>Checkout rules</li>
-							<li>Pending changes</li>
+							<li>Changes - pending and not pending</li>
 						</ul>
 					</section>
 				</section>
@@ -281,6 +291,7 @@
 						<h2>Basic Concepts</h2>
 						<h3><strong>Projects</strong></h3>
 						<ul>
+							<li>Typically associated with an application/project</li>
 							<li>Defines a process for deployment</li>
 							<li>Contains variables</li>
 							<li>Has many releases</li>
@@ -293,7 +304,6 @@
 						<ul>
 							<li>Contains a deployable package</li>
 							<li>Can have release notes (automate via a <span class="helper" title="can add functionality to a build configuration in TeamCity">build feature</span>)
-							<li>Has a version number</li>
 							<li>Can be deployed/promoted to various environments</li>
 						</ul>
 					</section>
@@ -332,21 +342,19 @@
 					</section>
 					<section>
 						<h2>Basic Concepts</h2>
-						<h3>Octopack and TeamCity Plugins</strong></h3>
+						<h3>Octopack TeamCity Plugin</strong></h3>
 						<ul>
-							<li>Octopack
-								<ul>
-									<li>Generates an Octopus-style NuGet package</li>
-									<li>Add to any VS project that is to be deployed</li>
-									<li>Can be found on nuget.org</li>
-								</ul>
-							</li>
-							<li>TeamCity Plugin
-								<ul>
-									<li>Adds 3 runners to your <span class="helper" title="a specific step in a build configuration such as MSBuild or MSTest or Restore NuGet packages">Build Step</span> options: Create/Deploy/Promote releases</li>
-									<li>Fires off tasks via the Octopus API</li>
-								</ul>
-							</li>
+							<li>Octopack</li>
+							<ul>
+								<li>Generates an Octopus-style NuGet package</li>
+								<li>Add to any VS project that is to be deployed</li>
+								<li>Can be found on nuget.org</li>
+							</ul>
+							<li>Octopus Deploy TeamCity plugin</li>
+							<ul>
+								<li>Adds 3 runners to your <span class="helper" title="a specific step in a build configuration such as MSBuild or MSTest or Restore NuGet packages">Build Step</span> options: Create/Deploy/Promote releases</li>
+								<li>Fires off tasks via the Octopus API</li>
+							</ul>
 						</ul>
 					</section>
 				</section>
@@ -456,7 +464,7 @@
 							<li class="fragment">We need a NuGet package</li>
 							<li class="fragment">We need to deploy the package</li>
 							<li class="fragment">We need to promote the package</li>
-							<li class="fragment">We need to generate some artifacts</li>
+							<li class="fragment">We need to update configuration variables for each environment</li>
 						</ul>
 						<aside class="notes">
 							<ul>
@@ -499,10 +507,34 @@
 					</section>
 				</section>
 				<section>
-					<h2>Let's tie these two systems together</h2>
-					<p>
-						<img src="img/lebowski/tied_room_together.gif">
-					</p>
+					<section>
+						<h2>Let's tie these two systems together</h2>
+						<p>
+							<img src="img/lebowski/tied_room_together.gif">
+						</p>
+					</section>
+					<section>
+						<h2>Tie what together, exactly?</h2>
+						<ul>
+							<li>So far we are creating artifacts in TeamCity</li>
+							<li>Then we navigate to Octopus to create/deploy a release</li>
+							<li>Wouldn't it be nice to not jump back and forth?</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Remember the Octopus Deploy Plugin?</h2>
+						<p>
+							We can create build steps with runners such as Create/Deploy/Promote release!
+						</p>
+						<aside class="notes">
+							<ul>
+								<li>Show with build step in 1st config</li>
+								<li>Show wrong package number getting picked up</li>
+								<li>Disable build config</li>
+								<li>Enable Proper config</li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 				<!-- End demo section -->
 				<!-- Wrap up -->
@@ -516,6 +548,9 @@
 					<h2>Slides and Source</h2>
 					<p style="overflow-wrap: break-word;">
 						<a href="https://github.com/ashmatthew/Presentations/tree/master/TeamCityOctopus">https://github.com/ashmatthew/Presentations/tree/master/TeamCityOctopus</a>
+					</p>
+					<p>
+						In coming days I'll post screen shots of build steps, octopus settings, etc
 					</p>
 				</section>
 				<section>
