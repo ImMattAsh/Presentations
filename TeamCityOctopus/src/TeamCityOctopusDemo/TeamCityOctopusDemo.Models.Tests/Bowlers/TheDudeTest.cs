@@ -8,7 +8,7 @@ namespace TeamCityOctopusDemo.Models.Tests.Bowlers
 	public class TheDudeTest
 	{
 		[TestMethod]
-		public void TestShouldIRoll()
+		public void ShouldIRoll_ReturnsTrueAlways()
 		{
 			var today = DateTime.Today;
 			for ( var i = 0; i < 7; i++ )
