@@ -51,11 +51,22 @@
 					<h2>Me</h2>
 					<ul>
 						<li>Matt Ash</li>
+						<li>App Dev Team Lead @ UFG</li>
 						<li>I hate shaving</li>
 						<li>I like writing code</li>
 						<li>I like automating build and deployment processes</li>
 						<li>@ashmatthew</li>
 					</ul>
+				</section>
+				<section>
+					<h2>Hopefully you're familiar with...</h2>
+					<ol>
+						<li class="fragment"><a href="https://www.nuget.org">NuGet</a></li>
+						<li class="fragment">Standard Structure of WebApps as served by IIS</li>
+						<li class="fragment">Web.Config transformations</li>
+						<li class="fragment">TeamCity and Octopus Deploy logos</li>
+						<li class="fragment">The Big Lebowski</li>
+					</ol>
 				</section>
 				<section>
 					<h2>What this is not</h2>
@@ -81,16 +92,6 @@
 						Enough info to walk away and setup your own continously integrated application
 					</p>
 					<p class="fragment"><small>...and maybe a little Big Lebowski humor</small></p>
-				</section>
-				<section>
-					<h2>Hopefully you're familiar with...</h2>
-					<ol>
-						<li class="fragment"><a href="https://www.nuget.org">NuGet</a></li>
-						<li class="fragment">Standard Structure of WebApps as served by IIS</li>
-						<li class="fragment">Web.Config transformations</li>
-						<li class="fragment">TeamCity and Octopus Deploy logos</li>
-						<li class="fragment">The Big Lebowski</li>
-					</ol>
 				</section>
 				<section>
 					<h2>Plan of Attack</h2>
@@ -127,17 +128,10 @@
 					</section>
 				</section>
 				<section>
-					<h3>Presentation Notes</h3>
-					<ul>
-						<li>Text in <span class="helper" title="remind me what this is">this color</span> means you can hover over it for a reminder of what "this" is (and you don't even need to call .bind() on it)</li>
-						<li>Logos - slides with both logos pertain to both products, slides with 1 logo pertain to just that product</li>
-					</ul>
-				</section>
-				<section>
+					<h2>Ok, Let's do this!</h2>
 					<p>
 						<img src="img/lebowski/jesus.gif"/>
 					</p>
-					<h2>Ok, Let's do this!</h2>
 				</section>
 				<!-- Start TeamCity section -->
 				<section data-state="tc-only">
@@ -247,15 +241,6 @@
 					</section>
 					<section>
 						<h2>"Advanced" Concepts</h2>
-						<h3>Build Features</h3>
-						<ul>
-							<li>VCS Labeling</li>
-							<li>Symbol File Indexer - Greg taught us some cool stuff with symbol files a number of months ago that would be helpful here</li>
-							<li>and many more...</li>
-						</ul>
-					</section>
-					<section>
-						<h2>"Advanced" Concepts</h2>
 						<h3>Plugins</h3>
 						<ul>
 							<li>Outside of projects, build configurations or build steps</li>
@@ -342,7 +327,7 @@
 					</section>
 					<section>
 						<h2>Basic Concepts</h2>
-						<h3>Octopus Deploy TeamCity Integrations</strong></h3>
+						<h3>Octopus Deploy / TeamCity Integrations</strong></h3>
 						<ul>
 							<li>Octopack</li>
 							<ul>
@@ -352,7 +337,7 @@
 							</ul>
 							<li>Octopus Deploy TeamCity plugin</li>
 							<ul>
-								<li>Adds 3 runners to your <span class="helper" title="a specific step in a build configuration such as MSBuild or MSTest or Restore NuGet packages">Build Step</span> options: Create/Deploy/Promote releases</li>
+								<li>Adds 3 runner types to your <span class="helper" title="a specific step in a build configuration such as MSBuild or MSTest or Restore NuGet packages">Build Step</span> options: Create/Deploy/Promote releases</li>
 								<li>Fires off tasks via the Octopus API</li>
 							</ul>
 						</ul>
@@ -375,14 +360,14 @@
 							<li>Get applied the same as project variables</li>
 						</ul>
 					</section>
-					<section>
+					<!--<section>
 						<h2>"Advanced" Concepts</h2>
 						<h3>Step Templates</h3>
 						<ul>
 							<li>A template for a reusable and custom <span class="helper" title="defines what is done when deploying to an environment">Deployment Process Step</span></li>
 							<li>Can be included on many projects</li>
 						</ul>
-					</section>
+					</section>-->
 					<section>
 						<h2>"Advanced" Concepts</h2>
 						<h3>External Feeds</h3>
@@ -391,13 +376,13 @@
 							<li>Add any nuget repositories you want. In our case, I've already added our TeamCity NuGet feed which <em>is</em> externally accessible</li>
 						</ul>
 					</section>
-					<section>
+					<!--<section>
 						<h2>"Advanced" Concepts</h2>
 						<h3>Script Modules</h3>
 						<ul>
 							<li>Collections of PowerShell functions and cmdlets that can be included in multiple projects</li>
 						</ul>
-					</section>
+					</section>-->
 				</section>
 				<!-- end Octopus section -->
 				<section>
