@@ -1,7 +1,5 @@
-
 $ApplicationPoolName = ""
 $Hostname = ""
-
 
 Function CreateApplicationPool {
 
