@@ -39,3 +39,4 @@ Function ConfigureIIS {
 }
 
 ConfigureIIS
+chrome $hostName
