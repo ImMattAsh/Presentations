@@ -1,13 +1,33 @@
-$siteAppPoolName = "IccSite.AppPool"
-$applicationAppPoolName ="IccApp.AppPool"
-$hostName = "IccSite.local"
+#Add-PSSnapin WebAdministration -ErrorAction SilentlyContinue - for older OS's
+Import-Module WebAdministration #-ErrorAction SilentlyContinue
 
-Function CreateApplicationPool {
-
+Function CreateApplicationPool($appPoolConfig) {
+    if(Test-Path "IIS:\AppPools\$($appPoolConfig.name)") {
+        Write-Host "AppPool $($appPoolConfig.name) found - will update settings"
+    } else {
+        Write-host "Creating app pool with name of '$($appPoolConfig.name)'"
+        New-WebAppPool -Name $appPoolConfig.name
+    }
+    
+    Set-ItemProperty -Path "IIS:\AppPools\$($appPoolConfig.name)" -name "managedRuntimeVersion" -value $appPoolConfig.managedRuntimeVersion
+    Set-ItemProperty -Path "IIS:\AppPools\$($appPoolConfig.name)" -name "autoStart"             -value $appPoolConfig.autoStart
+    Set-ItemProperty -Path "IIS:\AppPools\$($appPoolConfig.name)" -name "managedRuntimeVersion" -value $appPoolConfig.managedRuntimeVersion
+    Set-ItemProperty -Path "IIS:\AppPools\$($appPoolConfig.name)" -name "processModel"          -value $appPoolConfig.processModel
+   #Set-ItemProperty -Path "IIS:\AppPools\$($appPoolConfig.name)" -name processModel            -value @{userName="user_name";password="password";identitytype=3}
 }
 
-Function CreateWebsite {
-
+Function CreateWebsite($siteConfig) {
+    if(Test-Path "IIS:\Sites\$($siteConfig.name)") {
+        Write-Host "site '$($siteConfig.name)' already exists"
+    } else {
+        Write-Host "Creating Web Site"
+        New-Website `
+            -Name $siteConfig.name `
+            -PhysicalPath $siteConfig.physicalPath `
+            -HostHeader $siteConfig.hostName `
+            -Port $siteConfig.port `
+            -ApplicationPool $siteConfig.appPoolName
+    }
 }
 
 Function BindToHostname {
@@ -22,20 +42,22 @@ Function BindToHostname {
 }
 
 Function CreateApplication {
-
+    Write-Host "Creating Web Application"
 }
 
 Function CreateVirtualDirectory {
-
+    Write-Host "Creating Virtual Directory"
 }
 
 Function ConfigureIIS {
-    CreateApplicationPool
-    CreateWebsite
-    BindToHostname
-    CreateApplication
-    CreateVirtualDirectory
+    CreateApplicationPool $siteAppPoolConfig
+    CreateApplicationPool $applicationAppPoolConfig
+    CreateWebsite $websiteConfig
+    #BindToHostname
+    #CreateApplication
+    #CreateVirtualDirectory
 }
 
+. .\IISSettings.ps1 #pulling in configuration values to be used in this file
 ConfigureIIS
-start-process "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://$hostName"
+#start-process "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://$hostName"
