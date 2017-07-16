@@ -1,5 +1,5 @@
-$applicationPoolName = ""
-$hostName = "ICCsite.local"
+$applicationPoolName = "IccAppPool"
+$hostName = "IccSite.local"
 
 Function CreateApplicationPool {
 
@@ -10,8 +10,6 @@ Function CreateWebsite {
 }
 
 Function BindToHostname {
-    
-    
     #append entry to hosts - NOT related to WebAdministration
     $hostPath = "C:\Windows\System32\drivers\etc\hosts"
     if(Select-String -path $hostPath -Pattern $hostName) {
