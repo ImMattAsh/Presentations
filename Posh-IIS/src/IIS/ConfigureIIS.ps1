@@ -1,4 +1,5 @@
-$applicationPoolName = "IccAppPool"
+$siteAppPoolName = "IccSite.AppPool"
+$applicationAppPoolName ="IccApp.AppPool"
 $hostName = "IccSite.local"
 
 Function CreateApplicationPool {
@@ -37,4 +38,4 @@ Function ConfigureIIS {
 }
 
 ConfigureIIS
-chrome http://$hostName
+start-process "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://$hostName"
