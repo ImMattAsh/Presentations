@@ -3,7 +3,7 @@ Import-Module WebAdministration #-ErrorAction SilentlyContinue
 
 Function CreateApplicationPool($appPoolConfig) {
     if(Test-Path "IIS:\AppPools\$($appPoolConfig.name)") {
-        Write-Host "AppPool $($appPoolConfig.name) found - will update settings"
+        Write-Host "AppPool $($appPoolConfig.name) found - updating settings"
     } else {
         Write-host "Creating app pool with name of '$($appPoolConfig.name)'"
         New-WebAppPool -Name $appPoolConfig.name
@@ -19,6 +19,7 @@ Function CreateApplicationPool($appPoolConfig) {
 Function CreateWebsite($siteConfig) {
     if(Test-Path "IIS:\Sites\$($siteConfig.name)") {
         Write-Host "site '$($siteConfig.name)' already exists"
+
     } else {
         Write-Host "Creating Web Site"
         New-Website `
@@ -30,34 +31,41 @@ Function CreateWebsite($siteConfig) {
     }
 }
 
-Function BindToHostname {
-    #append entry to hosts - NOT related to WebAdministration
-    $hostPath = "C:\Windows\System32\drivers\etc\hosts"
-    if(Select-String -path $hostPath -Pattern $hostName) {
-        Write-host "Found host entry for $hostName"
+Function CreateApplication($appConfig) {
+    if(Test-Path "IIS:\Sites\$($appConfig.parentSite)\$($appConfig.virtualPath)") {
+        Write-Host "Found web application $($appConfig.virtualPath)"
     } else {
-        Write-host "Adding host record found for $hostName"
-        Add-content $hostPath "`r127.0.0.1`t`t`t$hostName"
+        Write-Host "Creating Web Application"
+        New-WebApplication `
+            -Name $appConfig.virtualPath `
+            -Site $appConfig.parentSite `
+            -PhysicalPath $appConfig.physicalPath `
+            -ApplicationPool $appConfig.appPoolName
     }
 }
 
-Function CreateApplication {
-    Write-Host "Creating Web Application"
-}
+Function CreateVirtualDirectory($vdConfig) {
+    if(Test-Path "IIS:\Sites\$($vdConfig.parentSite)\$($vdConfig.application)\$($vdConfig.virtualPath)") {
+        Write-Host "Found virtual directory $($vdConfig.virtualPath). Removing so it can be re-added"
+        Remove-WebVirtualDirectory -Name $vdConfig.virtualPath -Site $vdConfig.parentSite -Application $vdConfig.application
+    }
 
-Function CreateVirtualDirectory {
-    Write-Host "Creating Virtual Directory"
+    Write-Host "Creating Web Virtual Directory"
+    New-WebVirtualDirectory `
+        -Name $vdConfig.virtualPath `
+        -Site $vdConfig.parentSite `
+        -PhysicalPath $vdConfig.physicalPath `
+        -Application $vdConfig.application
 }
 
 Function ConfigureIIS {
     CreateApplicationPool $siteAppPoolConfig
     CreateApplicationPool $applicationAppPoolConfig
     CreateWebsite $websiteConfig
-    #BindToHostname
-    #CreateApplication
-    #CreateVirtualDirectory
+    CreateApplication $applicationConfig
+    CreateVirtualDirectory $virtualDirectoryConfig
+    CreateVirtualDirectory $applicationVirtualDirectoryConfig
 }
 
 . .\IISSettings.ps1 #pulling in configuration values to be used in this file
 ConfigureIIS
-#start-process "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "http://$hostName"

@@ -1,8 +1,3 @@
-$dnsConfig = @{
-    hostName = "IccSite.local";
-    port = 80;
-}
-
 $siteAppPoolConfig = @{
     name = "IccSite.AppPool";
     managedRuntimeVersion = "v4.0";
@@ -25,9 +20,29 @@ $applicationAppPoolConfig = @{
 
 $websiteConfig = @{
     name = "IccSite";
-    physicalPath = "C:\users\mash\github\Presentations\Posh-IIS\src\Apps\IowaCodeCamp\IowaCodeCamp.Site";
-    port = $dnsConfig.port;
-    hostName = $dnsConfig.hostName;
+    physicalPath = "C:\temp\iccsite";
+    port = 80;
+    hostName = "iccsite.local";
     appPoolName = $siteAppPoolConfig.name;
 }
 
+$applicationConfig = @{
+    virtualPath = "iccapp";
+    physicalPath = "C:\temp\iccapp";
+    appPoolName = $applicationAppPoolConfig.name;
+    parentSite = $websiteConfig.name;
+}
+
+$virtualDirectoryConfig = @{
+    virtualPath = "iccvd";
+    physicalPath = "C:\temp\iccvd";
+    parentSite = $websiteConfig.name;
+    application = "";
+}
+
+$applicationVirtualDirectoryConfig = @{
+    virtualPath = "iccappvd";
+    physicalPath = "C:\temp\iccappvd";
+    parentSite = $websiteConfig.name;
+    application = $applicationConfig.virtualPath;
+}
