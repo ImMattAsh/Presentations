@@ -14,40 +14,49 @@ Function CreateApplicationPool($appPoolConfig) {
     Set-ItemProperty -Path "IIS:\AppPools\$($appPoolConfig.name)" -name "managedRuntimeVersion" -value $appPoolConfig.managedRuntimeVersion
     Set-ItemProperty -Path "IIS:\AppPools\$($appPoolConfig.name)" -name "processModel"          -value $appPoolConfig.processModel
    #Set-ItemProperty -Path "IIS:\AppPools\$($appPoolConfig.name)" -name processModel            -value @{userName="user_name";password="password";identitytype=3}
+
+   Write-Host
 }
 
 Function CreateWebsite($siteConfig) {
     if(Test-Path "IIS:\Sites\$($siteConfig.name)") {
-        Write-Host "site '$($siteConfig.name)' already exists"
-
-    } else {
-        Write-Host "Creating Web Site"
-        New-Website `
-            -Name $siteConfig.name `
-            -PhysicalPath $siteConfig.physicalPath `
-            -HostHeader $siteConfig.hostName `
-            -Port $siteConfig.port `
-            -ApplicationPool $siteConfig.appPoolName
+        Write-Host "site '$($siteConfig.name)' already exists - removing so it can be re-added"
+        Remove-Website -Name $siteConfig.name `
     }
+    Write-Host "Creating Web Site"
+    New-Website `
+        -Name $siteConfig.name `
+        -PhysicalPath $siteConfig.physicalPath `
+        -HostHeader $siteConfig.hostName `
+        -Port $siteConfig.port `
+        -ApplicationPool $siteConfig.appPoolName
+   Write-Host
 }
 
 Function CreateApplication($appConfig) {
     if(Test-Path "IIS:\Sites\$($appConfig.parentSite)\$($appConfig.virtualPath)") {
-        Write-Host "Found web application $($appConfig.virtualPath)"
-    } else {
-        Write-Host "Creating Web Application"
-        New-WebApplication `
+        Write-Host "Found web application $($appConfig.virtualPath) - removing so it can be re-added"
+        Remove-WebApplication `
             -Name $appConfig.virtualPath `
-            -Site $appConfig.parentSite `
-            -PhysicalPath $appConfig.physicalPath `
-            -ApplicationPool $appConfig.appPoolName
+            -Site $appConfig.parentSite
     }
+
+    Write-Host "Creating Web Application"
+    New-WebApplication `
+        -Name $appConfig.virtualPath `
+        -Site $appConfig.parentSite `
+        -PhysicalPath $appConfig.physicalPath `
+        -ApplicationPool $appConfig.appPoolName
+   Write-Host
 }
 
 Function CreateVirtualDirectory($vdConfig) {
     if(Test-Path "IIS:\Sites\$($vdConfig.parentSite)\$($vdConfig.application)\$($vdConfig.virtualPath)") {
-        Write-Host "Found virtual directory $($vdConfig.virtualPath). Removing so it can be re-added"
-        Remove-WebVirtualDirectory -Name $vdConfig.virtualPath -Site $vdConfig.parentSite -Application $vdConfig.application
+        Write-Host "Found virtual directory $($vdConfig.virtualPath) - removing so it can be re-added"
+        Remove-WebVirtualDirectory `
+            -Name $vdConfig.virtualPath `
+            -Site $vdConfig.parentSite `
+            -Application "\$($vdConfig.application)"
     }
 
     Write-Host "Creating Web Virtual Directory"
@@ -56,6 +65,7 @@ Function CreateVirtualDirectory($vdConfig) {
         -Site $vdConfig.parentSite `
         -PhysicalPath $vdConfig.physicalPath `
         -Application $vdConfig.application
+   Write-Host
 }
 
 Function ConfigureIIS {
