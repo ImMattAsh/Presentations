@@ -1,3 +1,4 @@
+#[System.Reflection.Assembly]::LoadFrom( "C:\windows\system32\inetsrv\Microsoft.Web.Administration.dll" )
 #Add-PSSnapin WebAdministration -ErrorAction SilentlyContinue - for older OS's
 Import-Module WebAdministration #-ErrorAction SilentlyContinue
 
